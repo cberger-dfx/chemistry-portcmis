@@ -52,7 +52,7 @@ jobs:
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: |
-          nuget restore ${{env.SOLUTION_FILE_PATH}}
+          nuget restore ${{env.SOLUTION_FILE_PATH}} --api-key AzureArtifacts
           msbuild ${{env.SOLUTION_FILE_PATH}} /p:Configuration=Release 
 
       
@@ -65,5 +65,5 @@ jobs:
     # Publish the package to Azure Artifacts
     - name: 'dotnet publish'
       working-directory: ${{env.GITHUB_WORKSPACE}}./PortCMIS
-      run: dotnet nuget push --api-key AzureArtifacts ./nupkg/PortCMIS.${{ vars.PACKAGE_VERSION }}.nupkg 
+      run: dotnet nuget push ./nupkg/PortCMIS.${{ vars.PACKAGE_VERSION }}.nupkg --api-key AzureArtifacts 
 
