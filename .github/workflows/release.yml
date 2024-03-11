@@ -51,7 +51,9 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}./PortCMIS
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
-      run: msbuild ${{env.SOLUTION_FILE_PATH}} /p:Configuration=Release 
+      run: |
+          nuget restore ${{env.SOLUTION_FILE_PATH}}
+          msbuild ${{env.SOLUTION_FILE_PATH}} /p:Configuration=Release 
 
       
     - name: Pack NuGet packages
