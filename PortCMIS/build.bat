@@ -30,7 +30,7 @@ echo Building Release DLL...
 msbuild PortCMIS.csproj /p:Configuration=Release
 
 mkdir nupkg
-nuget pack PortCMIS.nuspec -o nupkg
+nuget pack -version %PACKAGE_VERSION% PortCMIS.nuspec -OutputDirectory nupkg
 
-echo Building documentation...
-msbuild PortCMIS.shfbproj /p:Configuration=Release
+rem echo Building documentation...
+rem msbuild PortCMIS.shfbproj /p:Configuration=Release
