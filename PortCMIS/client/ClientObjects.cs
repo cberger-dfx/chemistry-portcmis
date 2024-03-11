@@ -1617,7 +1617,7 @@ namespace PortCMIS.Client.Impl
 
                 lock (objectLock)
                 {
-                    IList<string> otids = GetPropertyValue(PropertyIds.AllowedChildObjectTypeIds) as IList<string>;
+                    IList<object> otids = GetPropertyValue(PropertyIds.AllowedChildObjectTypeIds) as IList<object>;
                     if (otids == null)
                     {
                         return result;
@@ -1625,7 +1625,7 @@ namespace PortCMIS.Client.Impl
 
                     foreach (string otid in otids)
                     {
-                        result.Add(Session.GetTypeDefinition(otid));
+                        result.Add(Session.GetTypeDefinition(otid.ToString()));
                     }
                 }
 
